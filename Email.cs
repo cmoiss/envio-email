@@ -3,24 +3,29 @@ using static System.Console;
 using System.Net.Mail;
 using System.Net;
 
-namespace Programa
+namespace teste_email
 {
     class Email
     {
         private const string emailPrincipal = "ocaiomoises@gmail.com";
         private const string emailSecundario = "cmextreme60@gmail.com";
-        private const string appPassword = "dodn qnti bwfy kqzr"; // "Senha de app" gerada pelo gmail
+        private const string appPassword = "zkne zmfm lxqo rwoj"; // "Senha de app" gerada pelo gmail
 
         public static void ProcessarEmail()
         {
-            try {
+            try
+            {
                 var msg = ConfigurarMensagem();
                 var smtp = ConfigurarSmtp();
-            
+
                 smtp.Send(msg);
+                smtp.Dispose();
                 WriteLine("Email enviado!");
-            } catch (System.Exception e) {
+            }
+            catch (Exception e)
+            {
                 WriteLine(e.StackTrace);
+                WriteLine(e.Message);
             }
         }
 
@@ -36,13 +41,14 @@ namespace Programa
             return msg;
         }
 
-        private static SmtpClient ConfigurarSmtp() 
+        private static SmtpClient ConfigurarSmtp()
         {
             var smtp = new SmtpClient();
 
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential(emailPrincipal, appPassword); 
+            smtp.Credentials = new NetworkCredential(emailPrincipal, appPassword);
+            smtp.Port = 587;
 
             return smtp;
         }

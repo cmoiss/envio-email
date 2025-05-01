@@ -1,2 +1,5 @@
 obj/Debug
 *.cache
+/bin/Debug
+/obj/Debug
+/bin

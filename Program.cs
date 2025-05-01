@@ -1,5 +1,5 @@
 ﻿using static System.Console;
-using static Programa.Email;
+using static teste_email.Email;
 
 internal class Program
 {
